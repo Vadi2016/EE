@@ -25,11 +25,30 @@
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
+
+
+    </dependency>
+
+    <dependency>
+      <groupId>org.wildfly.plugins</groupId>
+      <artifactId>wildfly-maven-plugin</artifactId>
+      <version>2.0.1.Final</version>
     </dependency>
   </dependencies>
 
+
+
   <build>
     <finalName>EE</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.wildfly.plugins</groupId>
+        <artifactId>wildfly-maven-plugin</artifactId>
+        <version>2.0.1.Final</version>
+      </plugin>
+    </plugins>
+
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
