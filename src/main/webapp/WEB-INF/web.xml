@@ -22,4 +22,18 @@
         <exception-type>java.lang.Error</exception-type>
         <location>/error</location>
     </error-page>
+
+
+    <context-param>
+        <param-name>dbUser</param-name>
+        <param-value>admin</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>admin</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbURL</param-name>
+        <param-value>jdbc:mysql://localhost:3306/EE</param-value>
+    </context-param>
 </web-app>
