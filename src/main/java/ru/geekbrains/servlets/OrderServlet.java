@@ -12,11 +12,7 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().println("<h1>Оформление заказа</h1>");
-        resp.getWriter().println("<a href=\"main\">Главная</a>");
-        resp.getWriter().println("<a href=\"catalog\">Каталог</a>");
-        resp.getWriter().println("<a href=\"product\">Товар</a>");
-        resp.getWriter().println("<a href=\"cart\">Корзина</a>");
-        resp.getWriter().println("<a href=\"order\">Оформление заказа</a>");
+        req.setAttribute("title", "Оформление заказа");
+        req.getRequestDispatcher("WEB-INF/views/order.jsp").forward(req, resp);
     }
 }
