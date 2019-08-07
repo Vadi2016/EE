@@ -14,15 +14,16 @@
         <c:forEach var="product" items="${products}">
             <div class="col-lg-3 mb-3">
                 <div class="card">
-                    <img src="${pageContext.request.contextPath}/static/img/noimage.gif" class="card-img-top" alt="...">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h5 class="card-title">${product.title.toUpperCase()}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
-                        <span>Цена: ${product.cost} руб.</span>
-                        <div class="text-center">
-                            <a href="product?id=${product.id}" class="btn btn-primary mt-3">Подробнее</a>
-                            <a href="cart" class="btn btn-success mt-3">Добавить в корзину</a>
+                    </div>
+
+                    <div class="card-body text-right">
+                        <img src="${pageContext.request.contextPath}/static/img/noimage.gif" class="card-img-top w-70" alt="...">
+                        <span>Цена: <strong>${product.cost} руб.</strong></span>
+                        <div class="btn-toolbar mt-3">
+                            <a href="product?id=${product.id}" class="btn btn-primary mr-auto">Подробнее</a>
+                            <a href="cart" class="btn btn-success">Добавить</a>
                         </div>
 
                     </div>
