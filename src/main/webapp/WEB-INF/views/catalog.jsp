@@ -17,9 +17,8 @@
                     <div class="card-header">
                         <h5 class="card-title">${product.title.toUpperCase()}</h5>
                     </div>
-
                     <div class="card-body text-right">
-                        <img src="${pageContext.request.contextPath}/static/img/noimage.gif" class="card-img-top w-70" alt="...">
+                        <img src="${pageContext.request.contextPath}/static/img/noimage.gif" class="card-img-top" alt="...">
                         <span>Цена: <strong>${product.cost} руб.</strong></span>
                         <div class="btn-toolbar mt-3">
                             <a href="product?id=${product.id}" class="btn btn-primary mr-auto">Подробнее</a>
