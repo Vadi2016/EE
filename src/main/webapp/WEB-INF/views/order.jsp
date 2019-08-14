@@ -1,9 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<jsp:include page="WEB-INF/views/head.jsp">
+<jsp:include page="head.jsp">
     <jsp:param name="title" value="${title}"/>
 </jsp:include>
 <body>
-<jsp:include page="WEB-INF/views/nav.jsp">
+<jsp:include page="nav.jsp">
     <jsp:param name="title" value="${title}"/>
 </jsp:include>
 <div class="container">
