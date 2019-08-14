@@ -1,4 +1,4 @@
-package ru.geekbrains.servlets.error;
+package ru.geekbrains.error;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

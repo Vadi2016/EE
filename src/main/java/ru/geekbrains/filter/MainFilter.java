@@ -1,4 +1,4 @@
-package ru.geekbrains.servlets.filter;
+package ru.geekbrains.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

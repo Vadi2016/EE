@@ -1,6 +1,6 @@
 package ru.geekbrains.servlets;
 
-import ru.geekbrains.servlets.util.DBConnectionManager;
+import ru.geekbrains.util.DBConnectionManager;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

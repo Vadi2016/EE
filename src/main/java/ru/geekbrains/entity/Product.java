@@ -1,4 +1,4 @@
-package ru.geekbrains.servlets.entity;
+package ru.geekbrains.entity;
 
 public class Product {
 
@@ -7,6 +7,8 @@ public class Product {
     private String desc;
     private int cost;
 
+    public Product()
+    {}
     public Product(Long id, String title, String desc, int cost) {
         this.id = id;
         this.title = title;
