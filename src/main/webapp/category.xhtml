@@ -12,7 +12,8 @@
         <h:panelGrid id="grid" columns="1" cellpadding="5">
             <h4>Название категории</h4>
             <h:inputText id="name" value="#{categoryBean.category.name}" required="true"
-                         requiredMessage="Это обязательное поле" validatorMessage="Длинна должна быть более 2 символов">
+                         requiredMessage="Это обязательное поле"
+                         validatorMessage="Длинна должна быть более 2 символов и начинаться с заглавной буквы!">
                 <f:validateLength minimum="2"/>
                 <f:validator validatorId="nameValidation"/>
             </h:inputText>
