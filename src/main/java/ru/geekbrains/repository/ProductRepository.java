@@ -6,6 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
@@ -41,6 +42,7 @@ public class ProductRepository {
     }
 
     public List<Product> getProducts() {
+
 
 //        try {
 //            String selectAllProducts = "SELECT * FROM products;";
@@ -136,5 +138,10 @@ public class ProductRepository {
         return findById(id) != null;
     }
 
+    public List<Product> search(String search) {
+        String qlString = "select product from Product product where product.title = (:name)";
+        Query q = em.createQuery(qlString, Product.class);
+        return q.setParameter("name", search).getResultList();
 
+    }
 }

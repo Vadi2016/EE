@@ -18,7 +18,13 @@ public class ProductBean implements Serializable {
 
     private Product product;
 
+    private String search;
+
     public List<Product> getAllProduct() {
+        if (this.search != null  && !this.search.equals("")) {
+            return productRepository.search(this.search);
+        }
+
         return productRepository.getProducts();
     }
 
@@ -48,5 +54,14 @@ public class ProductBean implements Serializable {
         this.product = new Product();
         return "/product.xhtml?faces-redirect=true";
     }
+
+    public String getSearch() {
+        return search;
+    }
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+
 
 }

@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS products;
 CREATE TABLE  products(
   id               INT(11) NOT NULL AUTO_INCREMENT,
   title            VARCHAR(50) NOT NULL,
-  descript         VARCHAR(3000) NOT NULL,
+  description         VARCHAR(3000) NOT NULL,
   cost             INT(11) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

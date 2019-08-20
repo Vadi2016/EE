@@ -15,6 +15,9 @@
         <h1>Товары</h1>
         <h:form id="form">
             <p:commandButton value="Создать" action="#{productsBean.createProduct()}"/>
+            <p:inputText id="search" value="#{productsBean.search}"/>
+            <p:commandButton update="form" value="Поиск"/>
+
             <p:dataTable var="product" value="#{productsBean.allProduct}">
                 <p:column headerText="Id">
                     <h:outputText value="#{product.id}"/>
