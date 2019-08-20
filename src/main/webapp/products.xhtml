@@ -17,7 +17,8 @@
             <p:commandButton value="Создать" action="#{productsBean.createProduct()}"/>
             <p:inputText id="search" value="#{productsBean.search}"/>
             <p:commandButton update="form" value="Поиск"/>
-
+            <p:inputText id="costFilter" value="#{productsBean.filterCost}"/>
+            <p:commandButton update="form" value="Фильтровать"/>
             <p:dataTable var="product" value="#{productsBean.allProduct}">
                 <p:column headerText="Id">
                     <h:outputText value="#{product.id}"/>

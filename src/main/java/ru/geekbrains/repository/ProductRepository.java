@@ -7,6 +7,10 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
@@ -142,6 +146,14 @@ public class ProductRepository {
         String qlString = "select product from Product product where product.title = (:name)";
         Query q = em.createQuery(qlString, Product.class);
         return q.setParameter("name", search).getResultList();
+    }
 
+    public List<Product> costGreaterThen(int cost) {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Product> productCriteriaQuery = cb.createQuery(Product.class);
+        Root<Product> productRoot = productCriteriaQuery.from(Product.class);
+        Predicate predicate = cb.gt(productRoot.get("cost"), cost);
+        productCriteriaQuery.where(predicate);
+        return em.createQuery(productCriteriaQuery).getResultList();
     }
 }

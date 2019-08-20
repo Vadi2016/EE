@@ -20,9 +20,16 @@ public class ProductBean implements Serializable {
 
     private String search;
 
+
+    private int filterCost;
+
     public List<Product> getAllProduct() {
         if (this.search != null  && !this.search.equals("")) {
             return productRepository.search(this.search);
+        }
+
+        if (this.filterCost != 0) {
+            return productRepository.costGreaterThen(this.filterCost);
         }
 
         return productRepository.getProducts();
@@ -62,6 +69,10 @@ public class ProductBean implements Serializable {
         this.search = search;
     }
 
-
-
+    public int getFilterCost() {
+        return filterCost;
+    }
+    public void setFilterCost(int filterCost) {
+        this.filterCost = filterCost;
+    }
 }
