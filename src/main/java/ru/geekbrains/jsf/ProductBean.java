@@ -3,21 +3,14 @@ package ru.geekbrains.jsf;
 import ru.geekbrains.entity.Product;
 import ru.geekbrains.repository.ProductRepository;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.ServletContext;
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 @SessionScoped
-@Named
+@Named("productsBean")
 public class ProductBean implements Serializable {
 
     @Inject
@@ -46,8 +39,8 @@ public class ProductBean implements Serializable {
         productRepository.delete(product);
     }
 
-    public String save() throws SQLException {
-        productRepository.save(this.product);
+    public String save() {
+        productRepository.merge(this.product);
         return "/products.xhtml?faces-redirect=true";
     }
 

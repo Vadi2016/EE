@@ -2,32 +2,31 @@ package ru.geekbrains.jsf;
 
 
 import ru.geekbrains.entity.Category;
-import ru.geekbrains.entity.Product;
 import ru.geekbrains.repository.CategoryRepository;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.ServletContext;
-import java.sql.Connection;
-import java.sql.SQLException;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
+//@SessionScoped
+//@ManagedBean
 @SessionScoped
-@ManagedBean
-public class CategoryBean {
+@Named("categoryBean")
+public class CategoryBean implements Serializable {
 
+    @Inject
     private CategoryRepository categoryRepository;
 
     private Category category;
 
-    @PostConstruct
-    public void init() {
-        ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-
-        categoryRepository = new CategoryRepository((Connection) context.getAttribute("DBConnection"));
-    }
+//    @PostConstruct
+//    public void init() {
+//        ServletContext context = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
+//
+//        categoryRepository = new CategoryRepository((Connection) context.getAttribute("DBConnection"));
+//    }
 
 
     public Category getCategory() {
@@ -51,8 +50,8 @@ public class CategoryBean {
         categoryRepository.delete(category);
     }
 
-    public String saveCategory() throws SQLException {
-        categoryRepository.save(getCategory());
+    public String saveCategory() {
+        categoryRepository.merge(this.category);
         return "/categories.xhtml?faces-redirect=true";
     }
 

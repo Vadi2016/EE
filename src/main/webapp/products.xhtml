@@ -14,8 +14,8 @@
 
         <h1>Товары</h1>
         <h:form id="form">
-            <p:commandButton value="Создать" action="#{productBean.createProduct()}"/>
-            <p:dataTable var="product" value="#{productBean.allProduct}">
+            <p:commandButton value="Создать" action="#{productsBean.createProduct()}"/>
+            <p:dataTable var="product" value="#{productsBean.allProduct}">
                 <p:column headerText="Id">
                     <h:outputText value="#{product.id}"/>
                 </p:column>
@@ -29,10 +29,10 @@
                     <h:outputText value="#{product.cost}"/>
                 </p:column>
                 <p:column headerText="Actions">
-                    <p:commandButton value="Редактировать" action="#{productBean.editProduct(product)}"
+                    <p:commandButton value="Редактировать" action="#{productsBean.editProduct(product)}"
                                      styleClass="mr-1"/>
                     <p:commandButton value="Удалить" id="ajax" update="form"
-                                     action="#{productBean.deleteProduct(product)}" style="margin-right:20px;"
+                                     action="#{productsBean.deleteProduct(product)}" style="margin-right:20px;"
                                      styleClass="ui-priority-primary"/>
                 </p:column>
             </p:dataTable>
