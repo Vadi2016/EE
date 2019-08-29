@@ -1,6 +1,7 @@
 package ru.geekbrains.repository;
 
 
+import ru.geekbrains.dto.CategoryDTO;
 import ru.geekbrains.entity.Category;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -29,12 +30,12 @@ public class CategoryRepository {
     }
 
     @Transactional
-    public Category merge(Category category) {
+    public CategoryDTO merge(CategoryDTO category) {
         return em.merge(category);
     }
 
 
-    public List<Category> getAllCategories() {
+    public List<CategoryDTO> getAllCategories() {
 //        try {
 //            String selectAllCategories = "SELECT * FROM categories;";
 //            PreparedStatement selectAllCategoriesPreparedStmt =
@@ -60,7 +61,7 @@ public class CategoryRepository {
     }
 
     @Transactional
-    public void delete(Category category) {
+    public void delete(CategoryDTO category) {
 //        try (PreparedStatement deleteStmt = con.prepareStatement("DELETE FROM categories WHERE id = ?;")) {
 //            deleteStmt.setLong(1, category.getId());
 //            deleteStmt.execute();
@@ -69,7 +70,7 @@ public class CategoryRepository {
 //        }
 
         try {
-            Category attachedCategory = findById(category.getId());
+            CategoryDTO attachedCategory = findById(category.getId());
             if (attachedCategory != null) {
                 em.remove(attachedCategory);
             }
@@ -90,8 +91,8 @@ public class CategoryRepository {
 //    }
 
 
-    public Category findById(Long id) {
-        return em.find(Category.class, id);
+    public CategoryDTO findById(Long id) {
+        return em.find(CategoryDTO.class, id);
     }
 
 //    public void save(Category category) throws SQLException {

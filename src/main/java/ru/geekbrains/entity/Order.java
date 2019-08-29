@@ -2,6 +2,7 @@ package ru.geekbrains.entity;
 
 
 import lombok.Data;
+import ru.geekbrains.dto.OrderDTO;
 
 import javax.persistence.*;
 
@@ -16,4 +17,9 @@ public class Order {
 
     @Column(name = "status")
     private String status;
+
+    public Order(OrderDTO orderDTO) {
+        this.id = orderDTO.getId();
+        this.status = orderDTO.getStatus();
+    }
 }

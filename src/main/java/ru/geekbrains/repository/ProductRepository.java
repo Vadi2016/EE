@@ -1,5 +1,6 @@
 package ru.geekbrains.repository;
 
+import ru.geekbrains.dto.ProductDTO;
 import ru.geekbrains.entity.Product;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -45,7 +46,7 @@ public class ProductRepository {
         return em.merge(product);
     }
 
-    public List<Product> getProducts() {
+    public List<ProductDTO> getProducts() {
 
 
 //        try {
@@ -76,7 +77,7 @@ public class ProductRepository {
     }
 
     @Transactional
-    public void delete(Product product) {
+    public void delete(Long id) {
 
 //        try (PreparedStatement deleteStmt = con.prepareStatement("DELETE FROM products WHERE id = ?;")) {
 //            deleteStmt.setLong(1, product.getId());
@@ -86,7 +87,7 @@ public class ProductRepository {
 //        }
 
         try {
-            Product attachedProduct = findById(product.getId());
+            Product attachedProduct = findById(id);
             if (attachedProduct != null) {
                 em.remove(attachedProduct);
             }
@@ -95,7 +96,7 @@ public class ProductRepository {
         }
     }
 
-    private Product findById(Long id) {
+    public Product findById(Long id) {
         return em.find(Product.class, id);
     }
 
@@ -142,16 +143,16 @@ public class ProductRepository {
         return findById(id) != null;
     }
 
-    public List<Product> search(String search) {
+    public List<ProductDTO> search(String search) {
         String qlString = "select product from Product product where product.title = (:name)";
-        Query q = em.createQuery(qlString, Product.class);
+        Query q = em.createQuery(qlString, ProductDTO.class);
         return q.setParameter("name", search).getResultList();
     }
 
-    public List<Product> costGreaterThen(int cost) {
+    public List<ProductDTO> costGreaterThen(int cost) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Product> productCriteriaQuery = cb.createQuery(Product.class);
-        Root<Product> productRoot = productCriteriaQuery.from(Product.class);
+        CriteriaQuery<ProductDTO> productCriteriaQuery = cb.createQuery(ProductDTO.class);
+        Root<ProductDTO> productRoot = productCriteriaQuery.from(ProductDTO.class);
         Predicate predicate = cb.gt(productRoot.get("cost"), cost);
         productCriteriaQuery.where(predicate);
         return em.createQuery(productCriteriaQuery).getResultList();

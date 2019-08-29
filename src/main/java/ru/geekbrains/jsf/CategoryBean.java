@@ -1,6 +1,7 @@
 package ru.geekbrains.jsf;
 
 
+import ru.geekbrains.dto.CategoryDTO;
 import ru.geekbrains.entity.Category;
 import ru.geekbrains.repository.CategoryRepository;
 
@@ -19,7 +20,7 @@ public class CategoryBean implements Serializable {
     @Inject
     private CategoryRepository categoryRepository;
 
-    private Category category;
+    private CategoryDTO category;
 
 //    @PostConstruct
 //    public void init() {
@@ -29,24 +30,24 @@ public class CategoryBean implements Serializable {
 //    }
 
 
-    public Category getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
     }
 
-    public List<Category> getAllCategories() {
+    public List<CategoryDTO> getAllCategories() {
         return categoryRepository.getAllCategories();
     }
 
-    public String editCategory(Category category) {
+    public String editCategory(CategoryDTO category) {
         this.category = category;
         return "/category.xhtml?faces-redirect=true";
     }
 
-    public void deleteCategory(Category category) {
+    public void deleteCategory(CategoryDTO category) {
         categoryRepository.delete(category);
     }
 
@@ -56,7 +57,7 @@ public class CategoryBean implements Serializable {
     }
 
     public String createCategory() {
-        this.category = new Category();
+        this.category = new CategoryDTO();
         return "/category.xhtml?faces-redirect=true";
     }
 

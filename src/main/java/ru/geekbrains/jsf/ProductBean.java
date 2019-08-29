@@ -1,8 +1,11 @@
 package ru.geekbrains.jsf;
 
+import ru.geekbrains.dto.ProductDTO;
 import ru.geekbrains.entity.Product;
 import ru.geekbrains.repository.ProductRepository;
+import ru.geekbrains.services.ProductServiceLocalBean;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,52 +16,51 @@ import java.util.List;
 @Named("productsBean")
 public class ProductBean implements Serializable {
 
-    @Inject
-    private ProductRepository productRepository;
+    @EJB
+    private ProductServiceLocalBean productServiceLocalBean;
 
-    private Product product;
+    private ProductDTO product;
 
     private String search;
 
-
     private int filterCost;
 
-    public List<Product> getAllProduct() {
+    public List<ProductDTO> getAllProduct() {
         if (this.search != null  && !this.search.equals("")) {
-            return productRepository.search(this.search);
+            return productServiceLocalBean.search(this.search);
         }
 
         if (this.filterCost != 0) {
-            return productRepository.costGreaterThen(this.filterCost);
+            return productServiceLocalBean.costGreaterThen(this.filterCost);
         }
 
-        return productRepository.getProducts();
+        return productServiceLocalBean.getAllProducts();
     }
 
-    public Product getProduct() {
+    public ProductDTO getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductDTO product) {
         this.product = product;
     }
 
-    public String editProduct(Product product) {
+    public String editProduct(ProductDTO product) {
         this.product = product;
         return "/product.xhtml?faces-redirect=true";
     }
 
-    public void deleteProduct(Product product) {
-        productRepository.delete(product);
+    public void deleteProduct(ProductDTO product) {
+        productServiceLocalBean.delete(product.getId());
     }
 
     public String save() {
-        productRepository.merge(this.product);
+        productServiceLocalBean.merge(this.product);
         return "/products.xhtml?faces-redirect=true";
     }
 
     public String createProduct() {
-        this.product = new Product();
+        this.product = new ProductDTO();
         return "/product.xhtml?faces-redirect=true";
     }
 

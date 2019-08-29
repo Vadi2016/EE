@@ -2,6 +2,7 @@ package ru.geekbrains.entity;
 
 
 import lombok.Data;
+import ru.geekbrains.dto.ProductDTO;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,4 +24,11 @@ public class Product implements Serializable {
 
     @Column(name = "cost")
     private int cost;
+
+    public Product(ProductDTO productDTO) {
+        this.id = productDTO.getId();
+        this.title = productDTO.getTitle();
+        this.desc = productDTO.getDesc();
+        this.cost = productDTO.getCost();
+    }
 }

@@ -1,6 +1,7 @@
 package ru.geekbrains.entity;
 
 import lombok.Data;
+import ru.geekbrains.dto.CategoryDTO;
 
 import javax.persistence.*;
 
@@ -15,4 +16,9 @@ public class Category {
 
     @Column(name = "name", unique = true, nullable = false)
     private String name;
+
+    public Category(CategoryDTO cat) {
+        this.id = cat.getId();
+        this.name = cat.getName();
+    }
 }
