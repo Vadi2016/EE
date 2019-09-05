@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<ui:include src="WEB-INF/jsf.fragments/head.xhtml">
+    <ui:param name="title" value="User form"/>
+</ui:include>
+<h:body>
+    <f:view>
+
+        <h1>Товары</h1>
+        <h:form id="form">
+            <p:commandButton value="Создать" action="#{productsBean.createProduct()}"/>
+            <p:inputText id="search" value="#{productsBean.search}"/>
+            <p:commandButton update="form" value="Поиск"/>
+            <p:inputText id="costFilter" value="#{productsBean.filterCost}"/>
+            <p:commandButton update="form" value="Фильтровать"/>
+            <p:dataTable var="product" value="#{productsBean.allProduct}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{product.id}"/>
+                </p:column>
+                <p:column headerText="Title">
+                    <h:outputText value="#{product.title}"/>
+                </p:column>
+                <p:column headerText="Description">
+                    <h:outputText value="#{product.desc}"/>
+                </p:column>
+                <p:column headerText="Cost">
+                    <h:outputText value="#{product.cost}"/>
+                </p:column>
+                <p:column headerText="Actions">
+                    <p:commandButton value="Редактировать" action="#{productsBean.editProduct(product)}"
+                                     styleClass="mr-1"/>
+                    <p:commandButton value="Удалить" id="ajax" update="form"
+                                     action="#{productsBean.deleteProduct(product)}" style="margin-right:20px;"
+                                     styleClass="ui-priority-primary"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </f:view>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous" type="javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous" type="javascript"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous" type="javascript"></script>
+</h:body>
+
+</html>
